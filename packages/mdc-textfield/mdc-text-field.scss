@@ -94,11 +94,9 @@
   padding:
     variables.$input-padding-top
     variables.$input-padding
-    variables.$input-padding-bottom;
+    variables.$input-padding-bottom + variables.$input-border-bottom;
   transition: functions.transition(opacity);
   border: none;
-  border-bottom: 1px solid;
-  border-radius: 0;
   background: none;
   appearance: none;
 
@@ -133,7 +131,7 @@
   // Vertically center aligns the text input placeholder and value for only filled variant.
   .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) & {
     padding-top: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 16px + variables.$input-border-bottom;
   }
 }
 // stylelint-disable-next-line plugin/selector-bem-pattern

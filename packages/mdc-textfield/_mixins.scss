@@ -534,10 +534,6 @@
 @mixin outlined-disabled_ {
   @include notched-outline-mixins.color(variables.$outlined-disabled-border);
   @include fill-color_(transparent);
-
-  .mdc-text-field__input {
-    border-bottom: none;
-  }
 }
 
 @mixin outlined-invalid_ {
@@ -605,13 +601,9 @@
 }
 
 @mixin hover-outline-color_($color) {
-  &:not(.mdc-text-field--focused) {
-    // stylelint-disable-next-line selector-combinator-space-after
-    .mdc-text-field__input:hover ~,
-    .mdc-text-field__icon:hover ~ {
-      .mdc-notched-outline {
-        @include notched-outline-mixins.color($color);
-      }
+  &:not(.mdc-text-field--focused):hover {
+    .mdc-notched-outline {
+      @include notched-outline-mixins.color($color);
     }
   }
 }
@@ -738,7 +730,7 @@
     display: block;
 
     .mdc-text-field__input {
-      padding: 0;
+      padding: 0 0 variables.$input-border-bottom;
     }
   }
 
@@ -855,20 +847,20 @@
 }
 
 @mixin bottom-line-color_($color) {
-  .mdc-text-field__input {
-    @include theme-mixins.prop(border-bottom-color, $color);
+  .mdc-line-ripple {
+    @include line-ripple-mixins.inactive-color($color);
   }
 }
 
 @mixin hover-bottom-line-color_($color) {
-  .mdc-text-field__input:hover {
-    @include theme-mixins.prop(border-bottom-color, $color);
+  &:hover .mdc-line-ripple {
+    @include line-ripple-mixins.inactive-color($color);
   }
 }
 
 @mixin line-ripple-color_($color) {
   .mdc-line-ripple {
-    @include line-ripple-mixins.color($color);
+    @include line-ripple-mixins.active-color($color);
   }
 }
 
