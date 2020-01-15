@@ -410,7 +410,7 @@ describe('MDCSliderFoundation', () => {
        foundation.init();
        jasmine.clock().tick(1);
 
-       foundation.setValue(foundation.getMax() + 1);
+       foundation.setValue((foundation.getMax() as number) + 1);
        expect(foundation.getValue()).toEqual(foundation.getMax());
      });
 
