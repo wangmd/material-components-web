@@ -21,9 +21,9 @@
  * THE SOFTWARE.
  */
 
-import {getCorrectPropertyName} from '../../animation/index';
-import {captureHandlers} from '../../testing/helpers/foundation';
-import {setUpFoundationTest} from '../../testing/helpers/setup';
+import {getCorrectPropertyName} from '../../mdc-animation/index';
+import {captureHandlers} from '../../../testing/helpers/foundation';
+import {setUpFoundationTest} from '../../../testing/helpers/setup';
 
 import {MDCSliderFoundation} from '../foundation';
 
