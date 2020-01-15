@@ -15,7 +15,6 @@
     "directory": "packages/mdc-touch-target"
   },
   "dependencies": {
-    "@material/base": "^4.0.0",
     "@material/feature-targeting": "^4.0.0"
   },
   "publishConfig": {
