@@ -87,12 +87,12 @@ export class MDCSnackbarFoundation extends MDCFoundation<MDCSnackbarAdapter> {
     this.runNextAnimationFrame_(() => {
       this.adapter_.addClass(OPEN);
 
-      this.animationTimer_ = setTimeout(() => {
+      this.animationTimer_ = window.setTimeout(() => {
         const timeoutMs = this.getTimeoutMs();
         this.handleAnimationTimerEnd_();
         this.adapter_.notifyOpened();
         if (timeoutMs !== numbers.INDETERMINATE) {
-          this.autoDismissTimer_ = setTimeout(() => {
+          this.autoDismissTimer_ = window.setTimeout(() => {
             this.close(REASON_DISMISS);
           }, timeoutMs);
         }
@@ -122,7 +122,7 @@ export class MDCSnackbarFoundation extends MDCFoundation<MDCSnackbarAdapter> {
     this.adapter_.removeClass(cssClasses.OPENING);
 
     clearTimeout(this.animationTimer_);
-    this.animationTimer_ = setTimeout(() => {
+    this.animationTimer_ = window.setTimeout(() => {
       this.handleAnimationTimerEnd_();
       this.adapter_.notifyClosed(reason);
     }, numbers.SNACKBAR_ANIMATION_CLOSE_TIME_MS);
@@ -186,14 +186,14 @@ export class MDCSnackbarFoundation extends MDCFoundation<MDCSnackbarAdapter> {
   }
 
   /**
-   * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
+   * Runs the given logic on the next animation frame, using window.setTimeout to factor in Firefox reflow behavior.
    */
   private runNextAnimationFrame_(callback: () => void) {
     cancelAnimationFrame(this.animationFrame_);
     this.animationFrame_ = requestAnimationFrame(() => {
       this.animationFrame_ = 0;
       clearTimeout(this.animationTimer_);
-      this.animationTimer_ = setTimeout(callback, 0);
+      this.animationTimer_ = window.setTimeout(callback, 0);
     });
   }
 }

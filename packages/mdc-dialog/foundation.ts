@@ -108,7 +108,7 @@ export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
 
       this.layout();
 
-      this.animationTimer_ = setTimeout(() => {
+      this.animationTimer_ = window.setTimeout(() => {
         this.handleAnimationTimerEnd_();
         this.adapter_.trapFocus(this.adapter_.getInitialFocusEl());
         this.adapter_.notifyOpened();
@@ -132,7 +132,7 @@ export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
     this.animationFrame_ = 0;
 
     clearTimeout(this.animationTimer_);
-    this.animationTimer_ = setTimeout(() => {
+    this.animationTimer_ = window.setTimeout(() => {
       this.adapter_.releaseFocus();
       this.handleAnimationTimerEnd_();
       this.adapter_.notifyClosed(action);
@@ -233,14 +233,14 @@ export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
   }
 
   /**
-   * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
+   * Runs the given logic on the next animation frame, using window.setTimeout to factor in Firefox reflow behavior.
    */
   private runNextAnimationFrame_(callback: () => void) {
     cancelAnimationFrame(this.animationFrame_);
     this.animationFrame_ = requestAnimationFrame(() => {
       this.animationFrame_ = 0;
       clearTimeout(this.animationTimer_);
-      this.animationTimer_ = setTimeout(callback, 0);
+      this.animationTimer_ = window.setTimeout(callback, 0);
     });
   }
 

@@ -172,14 +172,14 @@ export class MDCDismissibleDrawerFoundation extends MDCFoundation<MDCDrawerAdapt
   protected closed_() {} // tslint:disable-line:no-empty
 
   /**
-   * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
+   * Runs the given logic on the next animation frame, using window.setTimeout to factor in Firefox reflow behavior.
    */
   private runNextAnimationFrame_(callback: () => void) {
     cancelAnimationFrame(this.animationFrame_);
     this.animationFrame_ = requestAnimationFrame(() => {
       this.animationFrame_ = 0;
       clearTimeout(this.animationTimer_);
-      this.animationTimer_ = setTimeout(callback, 0);
+      this.animationTimer_ = window.setTimeout(callback, 0);
     });
   }
 
